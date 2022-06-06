@@ -1,0 +1,157 @@
+<div class="dashboard-wrapper">
+  <div class="header-wrapper color-bg-green">
+    <app-header></app-header>
+  </div>
+  <div class="body-wrapper">
+    <div class="sidebar-wrapper color-bg-dark">
+      <app-sidebar></app-sidebar>
+    </div>
+    <!-- tnc view -->
+    <div class="main-body-wrapper">
+      <!-- <button mat-fab class="add-tnc-btn" (click)="openModelForAddTnC()" matTooltip="Add Terms and Conditions">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="add-tnc-button-icon">
+          <path fill="white"
+            d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z">
+          </path>
+        </svg>
+      </button> -->
+      <div class="color-palat-wrapper">
+        <ul class="color-palat">
+          <li class="palat red-point">Request Coin</li>
+          <li class="palat yellow-point">Approved Coin</li>
+          <li class="palat blue-point">Payment</li>
+          <li class="palat green-point">Pay</li>
+        </ul>
+      </div>
+      <mat-card class="mb-3">
+        <mat-card-title>
+          Filter / Export expense
+        </mat-card-title>
+        <mat-form-field class="custom-height mr-2">
+          <mat-select [(ngModel)]="activeStatus">
+            <mat-option [value]='item.value' *ngFor="let item of statusList">{{item.title}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="mr-2">
+          <input matInput type="number" placeholder="Minimum amount" [(ngModel)]="downloadData.min_amt">
+        </mat-form-field>
+        <mat-form-field class="mr-2">
+          <input matInput type="number" placeholder="Maximum amount" [(ngModel)]="downloadData.max_amt">
+        </mat-form-field>
+        <button mat-raised-button class="green-bg color-white mr-2" (click)="getAllExpense()">
+          Apply
+        </button>
+        <button mat-raised-button class="green-bg color-white" (click)="exportDetail()">
+          Download
+        </button>
+      </mat-card>
+      <mat-card class="tnc-detail-wrapper">
+        <table class="table table-hover table-min-width">
+          <thead class="thead-dark">
+            <tr>
+              <th>#</th>
+              <th class="text-center">
+                <span matTooltip="Sort by Phone Number" class="sort"
+                  (click)="changeOrder(per_page,'req_phone_no',order)" mattooltipposition="below">Phone No &nbsp;
+                  <img src="./assets/images/sort-icon.svg" class="sort-icon" />
+                </span>
+              </th>
+              <th class="text-center">
+                <span matTooltip="Sort by Request Coin" class="sort"
+                  (click)="changeOrder(per_page,'request_coin',order)" mattooltipposition="below">Coin &nbsp;
+                  <img src="./assets/images/sort-icon.svg" class="sort-icon" />
+                </span>
+              </th>
+              <!-- <th class="text-center">
+                <span matTooltip="Sort by Approve Coin" class="sort"
+                  (click)="changeOrder(per_page,'approve_coin',order)" mattooltipposition="below">Approve Coin &nbsp;
+                  <img src="./assets/images/sort-icon.svg" class="sort-icon" />
+                </span>
+              </th> -->
+              <th class="text-center">
+                <span matTooltip="Sort by Payment" class="sort" (click)="changeOrder(per_page,'payment',order)"
+                  mattooltipposition="below">Payment &nbsp;
+                  <img src="./assets/images/sort-icon.svg" class="sort-icon" />
+                </span>
+              </th>
+              <th class="text-center">
+                <span>Status</span>
+              </th>
+              <!-- <th class="text-center">
+                <span>Create Time</span>
+              </th> -->
+              <th class="text-center">
+                <span>Action</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="data_fetch_error != null">
+              <td colspan="8">{{ data_fetch_error }}</td>
+            </tr>
+            <tr *ngFor="let row of data;let i = index">
+              <!-- <td>{{ row.expense_id }}</td> -->
+              <td>{{ row.index }}</td>
+              <td class="text-center" [ngClass]="{'red': row.is_phone_no_verify == 0 }">{{row.req_phone_no}}</td>
+              <!-- <td class="text-center">{{row.request_coin}}</td> -->
+              <!-- <td class="text-center">{{row.approve_coin}}</td> -->
+              <td class="text-center">
+                <span class="chip red-bg">{{row.request_coin}}</span>
+                <span class="chip yellow-bg" *ngIf="row.status != 0 && row.approve_coin">{{row.approve_coin}}</span>
+                <span class="chip yellow-bg" *ngIf="row.status != 0 && !row.approve_coin">N/A</span>
+              </td>
+              <td class="text-center">
+                <span class="chip blue-bg" *ngIf="row.status != 0 && row.payment">{{row.payment}}</span>
+                <span class="chip blue-bg" *ngIf="row.status != 0 && !row.payment">N/A</span>
+                <span class="chip green-bg" *ngIf="row.status != 0 && row.pay">{{row.pay}}</span>
+                <span class="chip green-bg" *ngIf="row.status != 0 && !row.pay">N/A</span>
+                <span class="chip green-bg" *ngIf="row.status == 0">N/A</span>
+              </td>
+              <td class="text-center">
+                <span *ngIf="row.status == 0">Pending</span>
+                <span *ngIf="row.status == 1">Success</span>
+                <span *ngIf="row.status == 2">Return</span>
+                <span *ngIf="row.status == 3">Cancel</span>
+              </td>
+              <!-- <td class="text-center">
+                <mat-slide-toggle matTooltip="Toggle Active Status" mattooltipposition="below"
+                  [checked]="row.is_active === 1" (change)="updateStatus(row, $event.checked)">
+                </mat-slide-toggle>
+              </td> -->
+              <td class="text-center">
+                <button mat-raised-button class="green-bg mr-2 color-white no-outline" matTooltip="Success Payment"
+                  mattooltipposition="below" (click)="makePayment(row, 1)" *ngIf="row.status == 0">
+                  Success
+                </button>
+                <button mat-raised-button class="yellow-bg mr-2 color-white no-outline" matTooltip="Return Payment"
+                  mattooltipposition="below" (click)="makePayment(row, 2)" *ngIf="row.status == 0">
+                  Return
+                </button>
+                <button mat-raised-button class="red-bg color-white no-outline" matTooltip="Cancel Payment"
+                  mattooltipposition="below" (click)="makePayment(row, 3)" *ngIf="row.status == 0">
+                  Cancel
+                </button>
+                <span *ngIf="row.status == 1">Success</span>
+                <span *ngIf="row.status == 2">Returned</span>
+                <span *ngIf="row.status == 3">Canceled</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-card>
+      <div class="mt-3" *ngIf="data_fetch_error == null">
+        <span class="d-inline-block">Items Per Page </span>
+        <mat-select [(value)]='per_page' class="ml-3 per-page-dropdown" (selectionChange)="getAllExpense(per_page)">
+          <mat-option *ngFor="let item of perPage" [value]="item">
+            {{ item }}
+          </mat-option>
+        </mat-select>
+        <ngb-pagination class="d-inline-block ml-3" [collectionSize]="total_record" [(page)]="page"
+          [pageSize]="per_page" [directionLinks]="true" (pageChange)="getAllExpense(per_page,sortField,order,page)"
+          [ngClass]="{'page_links' : true,'hide' : total_record <= per_page}" [maxSize]="3" [rotate]="true"
+          [boundaryLinks]="true">
+        </ngb-pagination>
+      </div>
+    </div>
+  </div>
+</div>

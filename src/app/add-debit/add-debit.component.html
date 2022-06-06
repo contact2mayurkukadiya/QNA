@@ -1,0 +1,80 @@
+<div class="add-round-container">
+  <div class="add-round-heading">
+    <h1 class="title-heading" *ngIf="!isUpdatingMode">Add Debit</h1>
+    <h1 class="title-heading" *ngIf="isUpdatingMode">Update Debit</h1>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="add-round-close-icon" (click)="close()">
+      <path fill="#465765"
+        d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z">
+      </path>
+    </svg>
+  </div>
+  <p class="form-field-error">{{error}}</p>
+  <div class="add-roung-content">
+    <div class="text-center mt-4">
+      <mat-form-field class="round-field">
+        <input type="number" matInput placeholder="Expense Number" [(ngModel)]="debitDetail.expenses_no"
+          (keyDown.enter)="addDebit(debitDetail)" min=0 *ngIf="!isUpdatingMode">
+          <input type="number" matInput placeholder="Expense Number" [(ngModel)]="debitDetail.expenses_no"
+          (keyDown.enter)="updateDebit(debitDetail)" min=0 *ngIf="isUpdatingMode">
+      </mat-form-field>
+    </div>
+    <div class="text-center">
+      <mat-form-field class="round-field">
+        <input type="text" matInput placeholder="Expenses Name" [(ngModel)]="debitDetail.expenses_name"
+          (keyDown.enter)="addDebit(debitDetail)" maxlength="100" *ngIf="!isUpdatingMode">
+          <input type="text" matInput placeholder="Expenses Name" [(ngModel)]="debitDetail.expenses_name"
+          (keyDown.enter)="updateDebit(debitDetail)" maxlength="100" *ngIf="isUpdatingMode">
+      </mat-form-field>
+    </div>
+    <div class="text-center">
+      <mat-form-field class="round-field">
+        <input type="number" matInput placeholder="Expenses Price" min="0" [(ngModel)]="debitDetail.expenses_price"
+          (keyDown.enter)="addDebit(debitDetail)" *ngIf="!isUpdatingMode">
+          <input type="number" matInput placeholder="Expenses Price" min="0" [(ngModel)]="debitDetail.expenses_price"
+          (keyDown.enter)="updateDebit(debitDetail)" *ngIf="isUpdatingMode">
+      </mat-form-field>
+    </div>
+    <div class="text-center">
+      <mat-form-field class="round-field">
+        <input type="number" matInput placeholder="Transaction Percentage" min="0" [(ngModel)]="debitDetail.trans_per"
+          (keyDown.enter)="addDebit(debitDetail)" *ngIf="!isUpdatingMode">
+          <input type="number" matInput placeholder="Transaction Percentage" min="0" [(ngModel)]="debitDetail.trans_per"
+          (keyDown.enter)="updateDebit(debitDetail)" *ngIf="isUpdatingMode">
+      </mat-form-field>
+    </div>
+    <div class="text-center">
+      <mat-form-field class="round-field">
+        <input type="number" matInput placeholder="Coins" min="0" [(ngModel)]="debitDetail.coins"
+          (keyDown.enter)="addDebit(debitDetail)" *ngIf="!isUpdatingMode">
+          <input type="number" matInput placeholder="Coins" min="0" [(ngModel)]="debitDetail.coins"
+          (keyDown.enter)="updateDebit(debitDetail)" *ngIf="isUpdatingMode">
+      </mat-form-field>
+    </div>
+    <div class="text-center">
+      <mat-form-field class="round-field">
+        <input type="number" matInput placeholder="Amount" min="0" [(ngModel)]="debitDetail.amount"
+          (keyDown.enter)="addDebit(debitDetail)" *ngIf="!isUpdatingMode">
+          <input type="number" matInput placeholder="Amount" min="0" [(ngModel)]="debitDetail.amount"
+          (keyDown.enter)="updateDebit(debitDetail)" *ngIf="isUpdatingMode"> 
+      </mat-form-field>
+    </div>
+    <div class="text-center">
+      <mat-form-field class="round-field">
+        <input type="number" matInput placeholder="Invite Amount" min="0" [(ngModel)]="debitDetail.invite_amt"
+          (keyDown.enter)="addDebit(debitDetail)"  *ngIf="!isUpdatingMode">
+          <input type="number" matInput placeholder="Invite Amount" min="0" [(ngModel)]="debitDetail.invite_amt"
+          (keyDown.enter)="updateDebit(debitDetail)"  *ngIf="isUpdatingMode">
+      </mat-form-field>
+    </div>
+    <div class="text-center mt-2 mb-2">
+      <button mat-raised-button class="submit-raised-button color-bg-green" (click)="addDebit(debitDetail)"
+        *ngIf="!isUpdatingMode">
+        Add
+      </button>
+      <button mat-raised-button class="submit-raised-button color-bg-green" (click)="updateDebit(debitDetail)"
+        *ngIf="isUpdatingMode">
+        Update
+      </button>
+    </div>
+  </div>
+</div>

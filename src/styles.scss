@@ -1,0 +1,581 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~bootstrap/dist/css/bootstrap.min.css';
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.outline-none {
+    outline: none !important;
+}
+
+@font-face {
+    font-family: 'Poppins-Bold';
+    src: url('./assets/fonts/Poppins-Bold.otf');
+    /* IE9 Compat Modes */
+}
+
+@font-face {
+    font-family: 'Poppins-Medium';
+    src: url('./assets/fonts/Poppins-Medium.otf');
+    /* IE9 Compat Modes */
+}
+
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('./assets/fonts/Poppins-Medium.otf');
+    /* IE9 Compat Modes */
+}
+
+@font-face {
+    font-family: 'Poppins-Light';
+    src: url('./assets/fonts/Poppins-Light.otf');
+    /* IE9 Compat Modes */
+}
+
+@font-face {
+    font-family: 'Poppins-Thin';
+    src: url('./assets/fonts/Poppins-Thin.otf');
+    /* IE9 Compat Modes */
+}
+
+// loading indecator
+.sk-circle-main {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: calc(50% - 30px);
+    left: calc(50% - 30px);
+    z-index: -1;
+}
+
+.sk-circle-main .sk-child {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.sk-circle-main .sk-child:before {
+    content: '';
+    display: block;
+    margin: 0 auto;
+    width: 15%;
+    height: 15%;
+    background-color: #333;
+    border-radius: 100%;
+    -webkit-animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;
+    animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;
+}
+
+.sk-circle-main .sk-circle-main2 {
+    -webkit-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
+    transform: rotate(30deg);
+}
+
+.sk-circle-main .sk-circle-main3 {
+    -webkit-transform: rotate(60deg);
+    -ms-transform: rotate(60deg);
+    transform: rotate(60deg);
+}
+
+.sk-circle-main .sk-circle-main4 {
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.sk-circle-main .sk-circle-main5 {
+    -webkit-transform: rotate(120deg);
+    -ms-transform: rotate(120deg);
+    transform: rotate(120deg);
+}
+
+.sk-circle-main .sk-circle-main6 {
+    -webkit-transform: rotate(150deg);
+    -ms-transform: rotate(150deg);
+    transform: rotate(150deg);
+}
+
+.sk-circle-main .sk-circle-main7 {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.sk-circle-main .sk-circle-main8 {
+    -webkit-transform: rotate(210deg);
+    -ms-transform: rotate(210deg);
+    transform: rotate(210deg);
+}
+
+.sk-circle-main .sk-circle-main9 {
+    -webkit-transform: rotate(240deg);
+    -ms-transform: rotate(240deg);
+    transform: rotate(240deg);
+}
+
+.sk-circle-main .sk-circle-main10 {
+    -webkit-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+
+.sk-circle-main .sk-circle-main11 {
+    -webkit-transform: rotate(300deg);
+    -ms-transform: rotate(300deg);
+    transform: rotate(300deg);
+}
+
+.sk-circle-main .sk-circle-main12 {
+    -webkit-transform: rotate(330deg);
+    -ms-transform: rotate(330deg);
+    transform: rotate(330deg);
+}
+
+.sk-circle-main .sk-circle-main2:before {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+}
+
+.sk-circle-main .sk-circle-main3:before {
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
+}
+
+.sk-circle-main .sk-circle-main4:before {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+
+.sk-circle-main .sk-circle-main5:before {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+}
+
+.sk-circle-main .sk-circle-main6:before {
+    -webkit-animation-delay: -0.7s;
+    animation-delay: -0.7s;
+}
+
+.sk-circle-main .sk-circle-main7:before {
+    -webkit-animation-delay: -0.6s;
+    animation-delay: -0.6s;
+}
+
+.sk-circle-main .sk-circle-main8:before {
+    -webkit-animation-delay: -0.5s;
+    animation-delay: -0.5s;
+}
+
+.sk-circle-main .sk-circle-main9:before {
+    -webkit-animation-delay: -0.4s;
+    animation-delay: -0.4s;
+}
+
+.sk-circle-main .sk-circle-main10:before {
+    -webkit-animation-delay: -0.3s;
+    animation-delay: -0.3s;
+}
+
+.sk-circle-main .sk-circle-main11:before {
+    -webkit-animation-delay: -0.2s;
+    animation-delay: -0.2s;
+}
+
+.sk-circle-main .sk-circle-main12:before {
+    -webkit-animation-delay: -0.1s;
+    animation-delay: -0.1s;
+}
+
+@-webkit-keyframes sk-circleBounceDelay {
+    0%,
+    80%,
+    100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    40% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes sk-circleBounceDelay {
+    0%,
+    80%,
+    100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    40% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+.table td,
+.table th {
+    vertical-align: middle;
+    max-width: 300px;
+}
+
+$color-green: #3aafa9;
+$color-dark: #36434F;
+// theme color class
+.color-green {
+    color: $color-green !important;
+}
+
+.color-dark {
+    color: $color-dark !important;
+}
+
+.color-bg-green {
+    background-color: $color-green !important;
+}
+
+.color-bg-dark {
+    background-color: $color-dark !important;
+}
+
+// loading indecator class
+.loading-panel-class {
+    min-width: unset !important;
+    min-height: unset !important;
+}
+
+.loading-panel-class mat-dialog-container {
+    width: 255px;
+    height: 150px;
+    overflow: hidden;
+    padding: 0px;
+}
+
+// error dialog style
+.snakBar-panel-class {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    max-width: unset;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Poppins-Light';
+    @media only screen and (max-width: 960px) {
+        top: -8px;
+        right: -8px;
+    }
+}
+
+.error {
+    background-color: #D94A3F;
+}
+
+.success {
+    background-color: #139D57;
+}
+
+// main dashboard css
+.dashboard-wrapper {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    min-width: 960px;
+    background-color: #ffffff;
+}
+
+.header-wrapper {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 50px;
+    width: 100%;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+    z-index: 50;
+}
+
+.body-wrapper {
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    height: calc(100% - 50px);
+    width: 100%;
+    display: flex;
+}
+
+.sidebar-wrapper {
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 300px;
+    height: 100%;
+    box-shadow: 2px 0px 10px 2px rgba(0, 0, 0, 0.2), 1px 0px 7px 0px rgba(0, 0, 0, 0.14), 1px 0px 4px 0 rgba(0, 0, 0, 0.12);
+    z-index: 25;
+    transition: 0.5s;
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+
+.sidebar-wrapper-shrink {
+    width: 0px !important;
+}
+
+.sidebar-wrapper::-webkit-scrollbar-thumb {
+    width: 5px;
+    border-radius: 10px;
+    background-color: rgba(58, 175, 169, 0.596)
+}
+
+.sidebar-wrapper::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background-color: transparent;
+}
+
+.main-body-wrapper::-webkit-scrollbar-thumb {
+    width: 10px;
+    border-radius: 20px;
+    background-color: rgba(58, 175, 169, 0.596)
+}
+
+.main-body-wrapper::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background-color: transparent;
+}
+
+.main-body-wrapper {
+    width: calc(100% - 300px);
+    padding: 20px;
+    background-color: #d5dbdb75;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.form-field-error {
+    font-family: 'Poppins-Light';
+    font-size: 13px;
+    line-height: 1.5;
+    color: #999999;
+    transition: 0.5s;
+    user-select: none;
+    text-align: center;
+    color: red;
+}
+
+// heading css
+.title-heading {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Poppins-Regular';
+    color: #465765;
+    user-select: none;
+}
+
+// submit button css
+.submit-raised-button {
+    height: 45px;
+    font-family: 'Poppins-Regular';
+    font-size: 14px;
+    width: 50%;
+    border-radius: 50px !important;
+    outline: none !important;
+    color: white;
+    max-width: unset;
+}
+
+// paginator css
+.page_links {
+    margin-left: 15px !important;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+    border-radius: 5px;
+}
+
+.page_links .page-link {
+    color: #36434F;
+}
+
+.page_links .pagination {
+    margin: 0px;
+}
+
+.page_links .page-item.active .page-link {
+    background-color: #36434F;
+    border-color: #36434F;
+    outline: none;
+    color: white;
+}
+
+.hide {
+    display: none;
+}
+
+// confirmation dialog panel class
+.confirmation-panel-class .mat-dialog-container {
+    padding: 0px !important;
+}
+
+// overwrite css of password field
+.mat-form-field.mat-focused .mat-form-field-label {
+    color: #36434F;
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: #3aafa9;
+}
+
+.keyword .mat-dialog-container,
+.add-notification-wrapper .mat-dialog-container,
+.add-admin-wrapper .mat-dialog-container,
+.add-round-wrapper .mat-dialog-container,
+.add-faq-wrapper .mat-dialog-container,
+.add-tnc-wrapper .mat-dialog-container,
+.add-question-wrapper .mat-dialog-container {
+    padding: 0px;
+}
+
+// overwrite switch color
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: #3aafa9 !important;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    background-color: rgba(58, 175, 169, 0.46) !important;
+}
+
+// overwrite css of radio button
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #3aafa9 !important;
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: #3aafa9 !important;
+}
+
+.mat-slide-toggle.mat-checked .mat-ripple-element,
+.mat-slide-toggle.mat-checked .mat-radio-persistent-ripple,
+.mat-radio-button.mat-accent.mat-radio-checked .mat-ripple-element,
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple {
+    background-color: #3aafa9 !important;
+}
+
+// overide css of disabled text area
+.faq-field .mat-form-field-disabled,
+.mat-input-element:disabled {
+    color: black !important;
+}
+
+// image uploader css
+.file-uploader {
+    min-width: 50px;
+    min-height: 50px;
+    position: relative;
+    border: 1px solid gray;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.file-upload-icon {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    top: calc(50% - 17.5px);
+    left: calc(50% - 17.5px);
+    opacity: 0.4;
+    z-index: 10;
+}
+
+.file-uploader:hover .file-upload-icon {
+    opacity: 0.7;
+}
+
+.file-uploader-view {
+    height: auto;
+    max-width: 100%;
+    width: auto;
+    max-height: 100%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+.bulk-menu .mat-menu-content {
+    padding: 15px;
+}
+
+.red-bg,
+.palat.red-point::after {
+    background-color: #DA5042;
+}
+
+.blue-bg,
+.palat.blue-point::after {
+    background-color: #4B8AF3;
+}
+
+.yellow-bg,
+.palat.yellow-point::after {
+    background-color: #FBC541;
+}
+
+.green-bg,
+.palat.green-point::after {
+    background-color: #17A05D
+}
+
+.color-white {
+    color: white;
+}
+
+.no-outline {
+    outline: none !important;
+}
+
+.chip {
+    padding: 3px;
+    margin: 3px;
+    font-size: 12px;
+    color: white;
+    border-radius: 3px;
+}
+
+.color-palat-wrapper {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+
+.color-palat {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+}
+
+.palat {
+    position: relative;
+    display: inline-block;
+    margin-left: 42px;
+    font-size: 14px;
+}
+
+.palat::after {
+    content: '';
+    height: 15px;
+    width: 15px;
+    border-radius: 3px;
+    position: absolute;
+    left: -22px;
+    top: 50%;
+    transform: translateY(-50%);
+}

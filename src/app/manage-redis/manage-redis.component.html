@@ -1,0 +1,40 @@
+<div class="dashboard-wrapper">
+  <div class="header-wrapper color-bg-green">
+    <app-header></app-header>
+  </div>
+  <div class="body-wrapper">
+    <div class="sidebar-wrapper color-bg-dark">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="main-body-wrapper">
+      <mat-card class="round-detail-wrapper">
+        <table class="table table-hover table-min-width">
+          <thead class="thead-dark">
+            <tr>
+              <th class="text-left">
+                <span>Cache Keys</span>
+              </th>
+              <th class="text-center">
+                <span>
+                  <button mat-raised-button class="delete-button" (click)="selectAll()">Select All</button>
+                  <button mat-raised-button class="delete-button" (click)="deleteKeys(data)">Delete</button>
+                </span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="data_fetch_error != null">
+              <td colspan="8">{{ data_fetch_error }}</td>
+            </tr>
+            <tr *ngFor="let row of data;let i = index">
+              <td>{{ row.key }}</td>
+              <td class="text-center">
+                <mat-checkbox [(ngModel)]="row.isSelected"></mat-checkbox>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-card>
+    </div>
+  </div>
+</div>

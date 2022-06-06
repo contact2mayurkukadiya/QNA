@@ -1,0 +1,189 @@
+<!-- <div class="dashboard-wrapper">
+  <div class="header-wrapper color-bg-green">
+    <app-header></app-header>
+  </div>
+  <div class="body-wrapper">
+    <div class="sidebar-wrapper color-bg-dark">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="main-body-wrapper">
+      <div class="mb-3">
+        <button mat-raised-button class="back-btn" (click)="back()">
+          <svg class="back-btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512">
+            <path fill="#36434F"
+              d="M4.2 247.5L151 99.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17L69.3 256l118.5 119.7c4.7 4.7 4.7 12.3 0 17L168 412.5c-4.7 4.7-12.3 4.7-17 0L4.2 264.5c-4.7-4.7-4.7-12.3 0-17z">
+            </path>
+          </svg>
+        </button>
+        <span class="user-name-title" *ngIf="userDetail.user_name">{{userDetail.user_name}}</span>
+        <button mat-raised-button class="float-right refresh-chat" matTooltip="Refresh Chat" mattooltipposition="below"
+          (click)="getAllChat()">
+          <svg class="back-btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path fill="#36434F"
+              d="M370.72 133.28C339.458 104.008 298.888 87.962 255.848 88c-77.458.068-144.328 53.178-162.791 126.85-1.344 5.363-6.122 9.15-11.651 9.15H24.103c-7.498 0-13.194-6.807-11.807-14.176C33.933 94.924 134.813 8 256 8c66.448 0 126.791 26.136 171.315 68.685L463.03 40.97C478.149 25.851 504 36.559 504 57.941V192c0 13.255-10.745 24-24 24H345.941c-21.382 0-32.09-25.851-16.971-40.971l41.75-41.749zM32 296h134.059c21.382 0 32.09 25.851 16.971 40.971l-41.75 41.75c31.262 29.273 71.835 45.319 114.876 45.28 77.418-.07 144.315-53.144 162.787-126.849 1.344-5.363 6.122-9.15 11.651-9.15h57.304c7.498 0 13.194 6.807 11.807 14.176C478.067 417.076 377.187 504 256 504c-66.448 0-126.791-26.136-171.315-68.685L48.97 471.03C33.851 486.149 8 475.441 8 454.059V320c0-13.255 10.745-24 24-24z">
+            </path>
+          </svg>
+        </button>
+        <span class="clearfix"></span>
+      </div>
+      <mat-card class="chat-wrapper">
+        <div class="chat-container">
+          <span class="message"
+            [ngClass]="{'sender': message.sender_user_id != 1, 'receiver': message.receiver_user_id != 1}"
+            *ngFor="let message of data">
+            <span class="message-subject" *ngIf="message.subject"
+              [ngClass]="{'border-none': !message.description}">{{ message.subject}}</span>
+            <span class="message-description">{{ message.description}}</span>
+            <button mat-raised-button class="delete-contact" [ngClass]="{'sender-delete': message.sender_user_id != 1, 'receiver-delete': message.receiver_user_id != 1}" (click)="deleteContact(message.contact_id)">
+              <img src="./assets/images/trash-icon.svg" class="action-icon" />
+            </button>
+          </span>
+        </div>
+        <div class="message-control-wrapper">
+          <mat-form-field class="message-field">
+            <input matInput placeholder="Subject" [(ngModel)]="messageDetail.subject"
+              (keyDown.enter)="sendMessage(messageDetail)" />
+          </mat-form-field>
+          <mat-form-field class="message-field">
+            <input matInput placeholder="Description" [(ngModel)]="messageDetail.description"
+              (keyDown.enter)="sendMessage(messageDetail)" />
+          </mat-form-field>
+          <button mat-raised-button class="message-send-button color-bg-green" (click)="sendMessage(messageDetail)">
+            send
+          </button>
+        </div>
+      </mat-card>
+      <div class="mt-3" *ngIf="data_fetch_error == null">
+        <span class="d-inline-block">Items Per Page </span>
+        <mat-select [(value)]='per_page' class="ml-3 per-page-dropdown" (selectionChange)="getAllChat(per_page)">
+          <mat-option *ngFor="let item of perPage" [value]="item">
+            {{ item }}
+          </mat-option>
+        </mat-select>
+        <ngb-pagination class="d-inline-block ml-3" [collectionSize]="total_record" [(page)]="page"
+          [pageSize]="per_page" [directionLinks]="true" (pageChange)="getAllChat(per_page,page)"
+          [ngClass]="{'page_links' : true,'hide' : total_record <= per_page}" [maxSize]="3" [rotate]="true"
+          [boundaryLinks]="true">
+        </ngb-pagination>
+      </div>
+  </div>
+</div>
+</div> -->
+
+
+<div class="dashboard-wrapper">
+  <div class="header-wrapper color-bg-green">
+    <app-header></app-header>
+  </div>
+  <div class="body-wrapper">
+    <div class="sidebar-wrapper color-bg-dark">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="main-body-wrapper">
+      <!--  <div class="mb-3">
+        <button mat-raised-button class="back-btn" (click)="back()">
+          <svg class="back-btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512">
+            <path fill="#36434F"
+              d="M4.2 247.5L151 99.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17L69.3 256l118.5 119.7c4.7 4.7 4.7 12.3 0 17L168 412.5c-4.7 4.7-12.3 4.7-17 0L4.2 264.5c-4.7-4.7-4.7-12.3 0-17z">
+            </path>
+          </svg>
+        </button>
+        <span class="round-name-title" *ngIf="userDetail.user_name">{{userDetail.user_name}}</span>
+      </div> -->
+      <div class="color-palat-wrapper">
+        <ul class="color-palat">
+          <li class="palat red-point">Email</li>
+          <li class="palat yellow-point">Phone No.</li>
+          <li class="palat green-point">subject</li>
+        </ul>
+      </div>
+      <mat-card class="round-detail-wrapper">
+        <table class="table table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th>#</th>
+              <th>
+                Email/Phone No
+              </th>
+              <th>
+                <span>Help Description</span>
+              </th>
+              <th>
+                <span>Reply</span>
+              </th>
+              <th class="text-center">
+                <span>Action</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="data_fetch_error != null">
+              <td colspan="8">{{ data_fetch_error }}</td>
+            </tr>
+            <tr *ngFor="let row of data;let i = index">
+              <!-- <td>{{ row.contact_id }}</td> -->
+              <td>{{ row.index }}</td>
+              <th>
+                <span class="chip red-bg">{{row.email_id}}</span>
+                <br />
+                <span class="chip yellow-bg">{{row.phone_no}}</span>
+              </th>
+              <td>
+                <!-- <span class="chip green-bg">{{row.subject}}</span> -->
+                <p class="sub-title">
+                  {{row.subject}}
+                </p>
+                <textarea class="contact-info" disabled [value]="row.description">
+                  </textarea>
+              </td>
+              <td>
+                <p class="contact-info text-center" *ngIf="row.contact_id != updatingContactId && !row.answer">
+                  NA
+                </p>
+                <textarea class="contact-info disabled-contact-info" disabled [value]="row.answer"
+                  *ngIf="row.contact_id != updatingContactId && row.answer">
+                </textarea>
+                <textarea class="contact-info update-contact-info" [value]="row.answer" [(ngModel)]="row.answer"
+                  *ngIf="row.contact_id == updatingContactId" placeholder="Some Text Here...">
+                  </textarea>
+              </td>
+              <td class="text-center">
+                <button mat-raised-button class="action-button" matTooltip="Send Reply" mattooltipposition="below"
+                  (click)="enterUpdating(row, i)" *ngIf="row.contact_id != updatingContactId && !row.answer">
+                  <img src="./assets/images/update-icon.svg" class="action-icon-small" />
+                </button>
+                <button mat-raised-button class="action-button" (click)="deleteContact(row.contact_id)"
+                  matTooltip="Delete Contact" mattooltipposition="below" *ngIf="row.contact_id != updatingContactId">
+                  <img src="./assets/images/trash-icon.svg" class="action-icon" />
+                </button>
+
+                <!-- update answer by admin button -->
+                <button mat-raised-button class="update-action-button red" (click)="ExitUpdating(i)"
+                  matTooltip="Cancel update" mattooltipposition="below" *ngIf="row.contact_id == updatingContactId">
+                  cancel
+                </button>
+                <button mat-raised-button class="update-action-button color-bg-green" (click)="sendMessage(row)"
+                  matTooltip="Update Round" mattooltipposition="below" *ngIf="row.contact_id == updatingContactId">
+                  Send
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-card>
+      <div class="mt-3" *ngIf="data_fetch_error == null">
+        <span class="d-inline-block">Items Per Page </span>
+        <mat-select [(value)]='per_page' class="ml-3 per-page-dropdown" (selectionChange)="getAllChat(per_page)">
+          <mat-option *ngFor="let item of perPage" [value]="item">
+            {{ item }}
+          </mat-option>
+        </mat-select>
+        <ngb-pagination class="d-inline-block ml-3" [collectionSize]="total_record" [(page)]="page"
+          [pageSize]="per_page" [directionLinks]="true" (pageChange)="getAllChat(per_page,page)"
+          [ngClass]="{'page_links' : true,'hide' : total_record <= per_page}" [maxSize]="3" [rotate]="true"
+          [boundaryLinks]="true">
+        </ngb-pagination>
+      </div>
+    </div>
+  </div>
+</div>

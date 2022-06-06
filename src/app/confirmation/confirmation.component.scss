@@ -1,0 +1,52 @@
+.confirmation-dialog-wrapper {
+  min-width: 600px;
+}
+
+.confirmation-heading-wrapper {
+  background-color: #36434F;
+  min-height: 45px;
+  padding: 10px 15px;
+}
+
+.confirmation-title {
+  font-size: 18px;
+  line-height: 25px;
+  font-family: 'Poppins-Light';
+  color: white;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  user-select: none;
+}
+
+.confirmation-content-wrapper {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.confirmation-description {
+  font-size: 14px;
+  font-family: 'Poppins-Light';
+  text-align: center;
+  margin: 10px auto;
+  max-width: 90%;
+  display: block;
+  user-select: none;
+}
+
+.confirmation-buttons {
+  height: 45px;
+  border-radius: 50px;
+  background-color: #36434F;
+  color: white;
+  font-size: 14px;
+  font-family: 'Poppins-Light';
+  margin: 25px 10px;
+  outline: none;
+  width: 135px;
+  transition: 0.5s;
+}
+
+.confirmation-buttons:hover {
+  background-color: #3AAFA9;
+}

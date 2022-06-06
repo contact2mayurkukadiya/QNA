@@ -1,0 +1,41 @@
+<div class="add-notification-container">
+  <div class="add-notification-heading">
+    <h1 class="title-heading" *ngIf="!isUpdatingMode">Add Notification</h1>
+    <h1 class="title-heading" *ngIf="isUpdatingMode">Update Notification</h1>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="add-notification-close-icon" (click)="close()">
+      <path fill="#465765"
+        d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z">
+      </path>
+    </svg>
+  </div>
+  <p class="form-field-error">{{error}}</p>
+  <div class="add-roung-content">
+    <div class="text-center mt-4">
+      <mat-form-field class="notification-field custom-height">
+        <mat-select [(ngModel)]="noteDetail.skuname">
+          <mat-option *ngFor="let item of list" [value]="item.value">
+            {{item.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="text-center">
+      <mat-form-field class="notification-field">
+        <textarea matInput placeholder="Notify :" [(ngModel)]="noteDetail.notification"
+          (keyDown.enter)="addNotification(noteDetail)" *ngIf="!isUpdatingMode"></textarea>
+        <textarea matInput placeholder="Notify :" [(ngModel)]="noteDetail.notification"
+          (keyDown.enter)="updateNotification(noteDetail)" *ngIf="isUpdatingMode"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="text-center mt-2 mb-2">
+      <button mat-raised-button class="submit-raised-button color-bg-green" (click)="addNotification(noteDetail)"
+        *ngIf="!isUpdatingMode">
+        Add
+      </button>
+      <button mat-raised-button class="submit-raised-button color-bg-green" (click)="updateNotification(noteDetail)"
+        *ngIf="isUpdatingMode">
+        Update
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,129 @@
+<div class="dashboard-wrapper">
+  <div class="header-wrapper color-bg-green">
+    <app-header></app-header>
+  </div>
+  <div class="body-wrapper">
+    <div class="sidebar-wrapper color-bg-dark">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="main-body-wrapper">
+      <mat-card class="round-detail-wrapper">
+        <div class="search-bar">
+          <mat-form-field class="custom-height">
+            <mat-select [(ngModel)]="searchData.searchType">
+              <mat-option *ngFor="let item of searchList" [value]="item.field">{{ item.title }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="search-control custom-height ml-2">
+            <input matInput placeholder="Search Text" [(ngModel)]="searchData.searchQuery"
+              (keyDown.enter)="searchUser(searchData)">
+          </mat-form-field>
+          <button mat-raised-button class="search-button" (click)="searchUser(searchData)">
+            Search
+          </button>
+          <button mat-raised-button class="search-button" (click)="resetSearch()">
+            Reset
+          </button>
+        </div>
+        <table class="table table-hover table-min-width">
+          <thead class="thead-dark">
+            <tr>
+              <th>#</th>
+              <th>
+                <span matTooltip="Sort by Name" class="sort" (click)="changeOrder(per_page,'first_name',order)"
+                  mattooltipposition="below">First Name &nbsp;
+                  <img src="./assets/images/sort-icon.svg" class="sort-icon" />
+                </span>
+              </th>
+              <th class="text-center">
+                <span matTooltip="Sort by Last Name" class="sort" mattooltipposition="below"
+                  (click)="changeOrder(per_page,'last_name',order)">Last Name &nbsp;
+                  <img src="./assets/images/sort-icon.svg" class="sort-icon" />
+                </span>
+              </th>
+              <th class="text-center">
+                <span matTooltip="Sort by Email Id" class="sort" mattooltipposition="below"
+                  (click)="changeOrder(per_page,'email_id',order)">Email &nbsp;
+                  <img src="./assets/images/sort-icon.svg" class="sort-icon" />
+                </span>
+              </th>
+              <th class="text-center">
+                <span matTooltip="Sort by Gender" class="sort" mattooltipposition="below"
+                  (click)="changeOrder(per_page,'gender',order)">Gender &nbsp;
+                  <img src="./assets/images/sort-icon.svg" class="sort-icon" />
+                </span>
+              </th>
+              <th class="text-center">
+                <span matTooltip="Sort by Phone No" class="sort" mattooltipposition="below"
+                  (click)="changeOrder(per_page,'phone_no',order)">Phone No &nbsp;
+                  <img src="./assets/images/sort-icon.svg" class="sort-icon" />
+                </span>
+              </th>
+              <th class="text-center">
+                <span matTooltip="Sort by Coins" class="sort" mattooltipposition="below"
+                  (click)="changeOrder(per_page,'coins',order)">Coins &nbsp;
+                  <img src="./assets/images/sort-icon.svg" class="sort-icon" />
+                </span>
+              </th>
+              <th class="text-center">
+                <span matTooltip="Sort by Signup Type" class="sort" mattooltipposition="below"
+                  (click)="changeOrder(per_page,'signup_type',order)">SignUp Type &nbsp;
+                  <img src="./assets/images/sort-icon.svg" class="sort-icon" />
+                </span>
+              </th>
+              <th class="text-center">
+                <span>Create Time</span>
+              </th>
+              <!-- <th class="text-center">
+                <span>Action</span>
+              </th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="data_fetch_error != null">
+              <td colspan="10">{{ data_fetch_error }}</td>
+            </tr>
+            <tr *ngFor="let row of data;let i = index">
+              <!-- <td>{{ row.user_id }}</td> -->
+              <td>{{ row.index }}</td>
+              <td>{{ row.first_name }}</td>
+              <td class="text-center">{{ row.last_name }}</td>
+              <td class="text-center">{{ row.email_id }}</td>
+              <td class="text-center" *ngIf="row.gender == 1">Male</td>
+              <td class="text-center" *ngIf="row.gender == 2">Female</td>
+              <td class="text-center">{{row.phone_no }}</td>
+              <td class="text-center" *ngIf="!row.phone_no">NA</td>
+              <td class="text-center">{{row.coins }}</td>
+              <td class="text-center" *ngIf="!row.signup_type">NA</td>
+              <td class="text-center" *ngIf="row.signup_type == 1">Email</td>
+              <td class="text-center" *ngIf="row.signup_type == 2">Facebook</td>
+              <td class="text-center" *ngIf="row.signup_type == 3">Twitter</td>
+              <td class="text-center" *ngIf="row.signup_type == 4">Gmail</td>
+              <td class="text-center">{{ row.create_time | toLocalTime }}</td>
+              <!-- <td class="text-center">
+                [disabled]="row.is_contact === 0"
+                <button mat-raised-button class="action-button" matTooltip="Replay" mattooltipposition="below"
+                  [ngClass]="{'color-bg-green': row.is_contact !== 0}" (click)="openChat(row)">
+                  <img src="./assets/images/chat-icon.svg" class="action-icon-small" />
+                </button>
+              </td> -->
+            </tr>
+          </tbody>
+        </table>
+      </mat-card>
+      <div class="mt-3" *ngIf="data_fetch_error == null && !isSearching">
+        <span class="d-inline-block">Items Per Page </span>
+        <mat-select [(value)]='per_page' class="ml-3 per-page-dropdown" (selectionChange)="getAllUser(per_page)">
+          <mat-option *ngFor="let item of perPage" [value]="item">
+            {{ item }}
+          </mat-option>
+        </mat-select>
+        <ngb-pagination class="d-inline-block ml-3" [collectionSize]="total_record" [(page)]="page"
+          [pageSize]="per_page" [directionLinks]="true" (pageChange)="getAllUser(per_page,sortField,order,page)"
+          [ngClass]="{'page_links' : true,'hide' : total_record <= per_page}" [maxSize]="3" [rotate]="true"
+          [boundaryLinks]="true">
+        </ngb-pagination>
+      </div>
+    </div>
+  </div>
+</div>

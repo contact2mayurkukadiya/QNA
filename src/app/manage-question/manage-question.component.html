@@ -1,0 +1,130 @@
+<div class="dashboard-wrapper">
+    <div class="header-wrapper color-bg-green">
+        <app-header></app-header>
+    </div>
+    <div class="body-wrapper">
+        <div class="sidebar-wrapper color-bg-dark">
+            <app-sidebar></app-sidebar>
+        </div>
+
+        <!-- Question View -->
+        <div class="main-body-wrapper">
+            <button mat-fab class="add-round-btn" (click)="openModelForAddQuestion()" matTooltip="Add Question">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="add-round-button-icon">
+          <path fill="white"
+            d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z">
+          </path>
+        </svg>
+      </button>
+            <div class="mb-3">
+                <button mat-raised-button class="back-btn" (click)="back()">
+          <svg class="back-btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512">
+            <path fill="#36434F"
+              d="M4.2 247.5L151 99.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17L69.3 256l118.5 119.7c4.7 4.7 4.7 12.3 0 17L168 412.5c-4.7 4.7-12.3 4.7-17 0L4.2 264.5c-4.7-4.7-4.7-12.3 0-17z">
+            </path>
+          </svg>
+        </button>
+                <span>Round : </span>
+                <span class="round-name-title" *ngIf="roundDetail.round_name">{{roundDetail.round_name}}</span>
+                <button mat-raised-button class="float-right color-bg-dark color-white outline-none" [matMenuTriggerFor]="bulkMenu">
+          Add Bulk Data
+        </button>
+                <mat-menu #bulkMenu="matMenu" class="bulk-menu">
+                    <div class="mat-wrapper outline-none" (click)="$event.stopPropagation()">
+                        <input type="file" accept=".csv" class="bulk-selector" id="csvUploader" [(ngModel)]="clearRef" (change)="handleFileInput($event)" />
+                        <button mat-raised-button class="outline-none color-bg-dark color-white" (click)="sendCsvFile()">
+              Add
+            </button>
+                    </div>
+                </mat-menu>
+            </div>
+            <mat-card class="round-detail-wrapper">
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>
+                                <span matTooltip="Sort by Question" class="sort" (click)="changeOrder(per_page,'question',order)" mattooltipposition="below">Question &nbsp;
+                  <img src="./assets/images/sort-icon.svg" class="sort-icon" />
+                </span>
+                            </th>
+                            <th class="text-center">
+                                <span matTooltip="Sort by Answer A" class="sort" mattooltipposition="below" (click)="changeOrder(per_page,'answer_a',order)">Answer A &nbsp;
+                  <img src="./assets/images/sort-icon.svg" class="sort-icon" />
+                </span>
+                            </th>
+                            <th class="text-center">
+                                <span matTooltip="Sort by Answer B" class="sort" mattooltipposition="below" (click)="changeOrder(per_page,'answer_b',order)">Answer B &nbsp;
+                  <img src="./assets/images/sort-icon.svg" class="sort-icon" />
+                </span>
+                            </th>
+                            <th class="text-center">
+                                <span matTooltip="Sort by Answer C" class="sort" mattooltipposition="below" (click)="changeOrder(per_page,'answer_c',order)">Answer C &nbsp;
+                  <img src="./assets/images/sort-icon.svg" class="sort-icon" />
+                </span>
+                            </th>
+                            <th class="text-center">
+                                <span matTooltip="Sort by Answer D" class="sort" mattooltipposition="below" (click)="changeOrder(per_page,'answer_d',order)">Answer d &nbsp;
+                  <img src="./assets/images/sort-icon.svg" class="sort-icon" />
+                </span>
+                            </th>
+                            <th class="text-center">
+                                <span>Image</span>
+                            </th>
+                            <th class="text-center">
+                                <span>Action</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="data_fetch_error != null">
+                            <td colspan="8">{{ data_fetch_error }}</td>
+                        </tr>
+                        <tr *ngFor="let row of data;let i = index">
+                            <!-- <td>{{ row.question_id }}</td> -->
+                            <td>{{ row.index }}</td>
+                            <td>
+                                <mat-form-field class="question-field">
+                                    <textarea matInput disabled [value]="row.question"></textarea>
+                                </mat-form-field>
+                            </td>
+                            <td class="text-center" [ngClass]="{'color-green true-answer': row.real_answer == 'answer_a'}">
+                                {{ row.answer_a }}</td>
+                            <td class="text-center" [ngClass]="{'color-green true-answer': row.real_answer == 'answer_b'}">
+                                {{ row.answer_b }}</td>
+                            <td class="text-center" [ngClass]="{'color-green true-answer': row.real_answer == 'answer_c'}">
+                                {{ row.answer_c }}</td>
+                            <td class="text-center" [ngClass]="{'color-green true-answer': row.real_answer == 'answer_d'}">
+                                {{ row.answer_d }}</td>
+                            <td class="text-center" *ngIf="row.question_thumbnail_image !== ''">
+                                <img [src]="row.question_thumbnail_image" class="question-image">
+                            </td>
+                            <td class="text-center" *ngIf="row.question_thumbnail_image === ''">
+                                NA
+                            </td>
+                            <td class="text-center">
+                                <button mat-raised-button class="action-button" matTooltip="Update Question" mattooltipposition="below" (click)="openModalforUpdate(row)">
+                  <img src="./assets/images/update-icon.svg" class="action-icon-small" />
+                </button>
+                                <button mat-raised-button class="action-button" (click)="deleteQuestion(row.question_id)" matTooltip="Delete Question" mattooltipposition="below" *ngIf="row.question_id != updatingQuestionId">
+                  <img src="./assets/images/trash-icon.svg" class="action-icon" />
+                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </mat-card>
+            <div class="mt-3" *ngIf="data_fetch_error == null">
+                <span class="d-inline-block">Items Per Page </span>
+                <mat-select [(value)]='per_page' class="ml-3 per-page-dropdown" (selectionChange)="getAllQuestion(per_page)">
+                    <mat-option *ngFor="let item of perPage" [value]="item">
+                        {{ item }}
+                    </mat-option>
+                </mat-select>
+                <ngb-pagination class="d-inline-block ml-3" [collectionSize]="total_record" [(page)]="page" [pageSize]="per_page" [directionLinks]="true" (pageChange)="getAllQuestion(per_page,sortField,order,page)" [ngClass]="{'page_links' : true,'hide' : total_record <= per_page}"
+                    [maxSize]="3" [rotate]="true" [boundaryLinks]="true">
+                </ngb-pagination>
+            </div>
+        </div>
+    </div>
+</div>

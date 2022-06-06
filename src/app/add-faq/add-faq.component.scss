@@ -1,0 +1,23 @@
+.add-faq-container {
+    height: 100%;
+    padding: 30px;
+    min-width: 500px;
+  }
+  
+  .add-faq-heading {
+    position: relative;
+  }
+  
+  .add-faq-close-icon {
+    position: absolute;
+    right: -15px;
+    top: -15px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+  
+  .faq-field {
+    width: 100%;
+  }
+  

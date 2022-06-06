@@ -1,0 +1,16 @@
+<div class="confirmation-dialog-wrapper">
+  <div class="confirmation-heading-wrapper">
+    <h2 class="confirmation-title">{{ data.title }}</h2>
+  </div>
+  <div class="confirmation-content-wrapper">
+    <p class="confirmation-description">{{data.description}}</p>
+    <div class="text-center">
+      <button mat-raised-button class="confirmation-buttons" (click)="close(true)">
+        {{data.acceptBtnText}}
+      </button>
+      <button mat-raised-button class="confirmation-buttons" (click)="close(false)">
+        {{data.deniedBtnText}}
+      </button>
+    </div>
+  </div>
+</div>

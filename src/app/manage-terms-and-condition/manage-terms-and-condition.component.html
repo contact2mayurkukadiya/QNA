@@ -1,0 +1,95 @@
+<div class="dashboard-wrapper">
+  <div class="header-wrapper color-bg-green">
+    <app-header></app-header>
+  </div>
+  <div class="body-wrapper">
+    <div class="sidebar-wrapper color-bg-dark">
+      <app-sidebar></app-sidebar>
+    </div>
+    <!-- tnc view -->
+    <div class="main-body-wrapper">
+      <button mat-fab class="add-tnc-btn" (click)="openModelForAddTnC()" matTooltip="Add Terms and Conditions">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="add-tnc-button-icon">
+          <path fill="white"
+            d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z">
+          </path>
+        </svg>
+      </button>
+      <mat-card class="tnc-detail-wrapper">
+        <table class="table table-hover table-min-width">
+          <thead class="thead-dark">
+            <tr>
+              <th>#</th>
+              <th>
+                <span matTooltip="Sort by Subject" class="sort" (click)="changeOrder(per_page,'subject',order)"
+                  mattooltipposition="below">Subject &nbsp;
+                  <img src="./assets/images/sort-icon.svg" class="sort-icon" />
+                </span>
+              </th>
+              <th class="text-center">
+                <span matTooltip="Sort by Description" class="sort" mattooltipposition="below"
+                  (click)="changeOrder(per_page,'description',order)">Description &nbsp;
+                  <img src="./assets/images/sort-icon.svg" class="sort-icon" />
+                </span>
+              </th>
+              <th class="text-center">
+                <span>Is Active</span>
+              </th>
+              <th class="text-center">
+                <span>Create Time</span>
+              </th>
+              <th class="text-center">
+                <span>Action</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="data_fetch_error != null">
+              <td colspan="8">{{ data_fetch_error }}</td>
+            </tr>
+            <tr *ngFor="let row of data;let i = index">
+              <!-- <td>{{ row.term_n_condition_id }}</td> -->
+              <td>{{ row.index }}</td>
+              <td>
+                <mat-form-field class="tnc-field">
+                  <textarea matInput disabled [value]="row.subject"></textarea>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="tnc-field">
+                  <textarea matInput disabled [value]="row.description"></textarea>
+                </mat-form-field>
+              </td>
+              <td class="text-center">
+                <mat-slide-toggle matTooltip="Toggle Active Status" mattooltipposition="below" [checked]="row.is_active === 1" (change)="updateStatus(row, $event.checked)">
+                </mat-slide-toggle>
+              </td>
+              <td class="text-center">{{ row.create_time | toLocalTime }}</td>
+              <td class="text-center">
+                <button mat-raised-button class="action-button" matTooltip="Update Terms and Conditions" mattooltipposition="below" (click)="openDialogForUpdate(row)">
+                  <img src="./assets/images/update-icon.svg" class="action-icon-small" />
+                </button>
+                <button mat-raised-button class="action-button" (click)="deleteTnC(row.term_n_condition_id)"
+                  matTooltip="Delete Terms and Conditions" mattooltipposition="below">
+                  <img src="./assets/images/trash-icon.svg" class="action-icon" />
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-card>
+      <div class="mt-3" *ngIf="data_fetch_error == null">
+        <span class="d-inline-block">Items Per Page </span>
+        <mat-select [(value)]='per_page' class="ml-3 per-page-dropdown" (selectionChange)="getAllTnC(per_page)">
+          <mat-option *ngFor="let item of perPage" [value]="item">
+            {{ item }}
+          </mat-option>
+        </mat-select>
+        <ngb-pagination class="d-inline-block ml-3" [collectionSize]="total_record" [(page)]="page"
+          [pageSize]="per_page" [directionLinks]="true" (pageChange)="getAllTnC(per_page,sortField,order,page)"
+          [ngClass]="{'page_links' : true,'hide' : total_record <= per_page}" [maxSize]="3" [rotate]="true" [boundaryLinks]="true">
+        </ngb-pagination>
+      </div>
+    </div>
+  </div>
+</div>

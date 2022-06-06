@@ -1,0 +1,60 @@
+<div class="add-round-container">
+  <div class="add-round-heading">
+    <h1 class="title-heading" *ngIf="!isUpdatingMode">Add Admin</h1>
+    <h1 class="title-heading" *ngIf="isUpdatingMode">Update Admin</h1>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="add-round-close-icon" (click)="close()">
+      <path fill="#465765"
+        d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z">
+      </path>
+    </svg>
+  </div>
+  <p class="form-field-error">{{error}}</p>
+  <div class="add-roung-content">
+    <div class="text-center mt-4">
+      <mat-form-field class="round-field">
+        <input type="text" matInput placeholder="First Name" [(ngModel)]="adminDetail.first_name"
+          (keyDown.enter)="addAdmin(adminDetail)" maxlength="100" *ngIf="!isUpdatingMode">
+        <input type="text" matInput placeholder="First Name" [(ngModel)]="adminDetail.first_name"
+          (keyDown.enter)="updateAdmin(adminDetail)" maxlength="100" *ngIf="isUpdatingMode">
+      </mat-form-field>
+    </div>
+    <div class="text-center">
+      <mat-form-field class="round-field">
+        <input type="text" matInput placeholder="Last Name" [(ngModel)]="adminDetail.last_name"
+          (keyDown.enter)="addAdmin(adminDetail)" maxlength="100" *ngIf="!isUpdatingMode">
+          <input type="text" matInput placeholder="Last Name" [(ngModel)]="adminDetail.last_name"
+          (keyDown.enter)="updateAdmin(adminDetail)" maxlength="100" *ngIf="isUpdatingMode">
+      </mat-form-field>
+    </div>
+    <div class="text-center">
+      <mat-form-field class="round-field">
+        <input type="email" matInput placeholder="Email" [(ngModel)]="adminDetail.email_id"
+          (keyDown.enter)="addAdmin(adminDetail)" maxlength="100" *ngIf="!isUpdatingMode">
+          <input type="email" matInput placeholder="Email" [(ngModel)]="adminDetail.email_id" (keyDown.enter)="updateAdmin(adminDetail)"
+          maxlength="100" *ngIf="isUpdatingMode">
+      </mat-form-field>
+    </div>
+    <div class="text-center" *ngIf="!isUpdatingMode">
+      <mat-form-field class="round-field">
+        <input type="password" matInput placeholder="Password" [(ngModel)]="adminDetail.password"
+          (keyDown.enter)="addAdmin(adminDetail)">
+      </mat-form-field>
+    </div>
+    <div class="text-center" *ngIf="!isUpdatingMode">
+      <mat-form-field class="round-field">
+        <input type="password" matInput placeholder="Confirm Password" [(ngModel)]="adminDetail.c_password"
+          (keyDown.enter)="addAdmin(adminDetail)">
+      </mat-form-field>
+    </div>
+    <div class="text-center mt-2 mb-2">
+      <button mat-raised-button class="submit-raised-button color-bg-green" (click)="addAdmin(adminDetail)"
+        *ngIf="!isUpdatingMode">
+        Add
+      </button>
+      <button mat-raised-button class="submit-raised-button color-bg-green" (click)="updateAdmin(adminDetail)"
+        *ngIf="isUpdatingMode">
+        Update
+      </button>
+    </div>
+  </div>
+</div>

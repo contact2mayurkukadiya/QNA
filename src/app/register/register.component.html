@@ -1,0 +1,70 @@
+<div class="dashboard-wrapper">
+  <div class="header-wrapper color-bg-green">
+    <app-header></app-header>
+  </div>
+  <div class="body-wrapper">
+    <div class="sidebar-wrapper color-bg-dark">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="main-body-wrapper">
+      <button mat-fab class="add-admin-btn" (click)="openModelForAddAdmin()" matTooltip="Add Admin">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="add-admin-button-icon">
+          <path fill="white"
+            d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z">
+          </path>
+        </svg>
+      </button>
+      <mat-card class="admin-detail-wrapper">
+        <table class="table table-hover table-min-width">
+          <thead class="thead-dark">
+            <tr>
+              <th>#</th>
+              <th class="text-center">
+                <span>First Name</span>
+              </th>
+              <th class="text-center">
+                <span>Last Name</span>
+              </th>
+              <th class="text-center">
+                <span>Email</span>
+              </th>
+              <th class="text-center">
+                <span>Is Active</span>
+              </th>
+              <th class="text-center">
+                <span>Create Time</span>
+              </th>
+              <!-- <th class="text-center">
+                <span>Action</span>
+              </th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="data_fetch_error != null">
+              <td colspan="8">{{ data_fetch_error }}</td>
+            </tr>
+            <tr *ngFor="let row of data;let i = index">
+              <!-- <td>{{ row.user_id }}</td> -->
+              <td>{{ row.index }}</td>
+              <td class="text-center">{{ row.first_name}}</td>
+              <td class="text-center">{{ row.last_name}}</td>
+              <td class="text-center">{{ row.email_id}}</td>
+              <td class="text-center">
+                <mat-slide-toggle matTooltip="Toggle Active Status" mattooltipposition="below"
+                  [checked]="row.is_active === 1" (change)="updateStatus(row, $event.checked)">
+                </mat-slide-toggle>
+              </td>
+              <td class="text-center">{{ row.create_time | toLocalTime }}</td>
+              <!-- <td class="text-center">
+                <button mat-raised-button class="action-button" matTooltip="Update Admin Data"
+                  mattooltipposition="below" (click)="openDialogForUpdate(row)">
+                  <img src="./assets/images/update-icon.svg" class="action-icon-small" />
+                </button>
+              </td> -->
+            </tr>
+          </tbody>
+        </table>
+      </mat-card>
+    </div>
+  </div>
+</div>

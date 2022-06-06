@@ -1,0 +1,28 @@
+.change-password-wrapper {
+  width: 500px;
+}
+
+.change-password-heading {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: 'Poppins-Regular';
+  color: #465765;
+  user-select: none;
+}
+
+.password-field {
+  width: 80%;
+  margin: auto;
+}
+
+.change-password-button {
+  height: 45px;
+  font-family: 'Poppins-Regular';
+  font-size: 14px;
+  width: 50%;
+  border-radius: 50px;
+  outline: none;
+  color: white;
+  max-width: unset;
+}

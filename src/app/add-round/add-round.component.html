@@ -1,0 +1,60 @@
+<div class="add-round-container">
+  <div class="add-round-heading">
+    <h1 class="title-heading">Add Round</h1>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="add-round-close-icon" (click)="close()">
+      <path fill="#465765"
+        d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z">
+      </path>
+    </svg>
+  </div>
+  <p class="form-field-error">{{error}}</p>
+  <div class="add-roung-content">
+    <div class="text-center mt-4">
+      <mat-form-field class="round-field">
+        <input type="text" matInput placeholder="Round name" [(ngModel)]="roundDetail.round_name"
+          (keyDown.enter)="addRound(roundDetail)" maxlength="100">
+      </mat-form-field>
+    </div>
+    <div class="text-center">
+      <mat-form-field class="round-field">
+        <input type="number" matInput placeholder="Entry coins for round" min="0" [(ngModel)]="roundDetail.entry_coins"
+          (keyDown.enter)="addRound(roundDetail)">
+      </mat-form-field>
+    </div>
+    <div class="text-center">
+      <mat-form-field class="round-field">
+        <input type="number" matInput placeholder="Give coins per answer" min="0"
+          [(ngModel)]="roundDetail.coin_per_answer" (keyDown.enter)="addRound(roundDetail)">
+      </mat-form-field>
+    </div>
+    <div class="text-center">
+      <mat-form-field class="round-field">
+        <input type="number" matInput placeholder="Answer time in seconds" min="0"
+          [(ngModel)]="roundDetail.sec_to_answer" (keyDown.enter)="addRound(roundDetail)">
+      </mat-form-field>
+    </div>
+    <div class="text-center">
+      <mat-form-field class="round-field">
+        <input type="number" matInput placeholder="Coins minus per second" min="0" [(ngModel)]="roundDetail.coins_minus"
+          (keyDown.enter)="addRound(roundDetail)">
+      </mat-form-field>
+    </div>
+    <div class="text-center">
+      <mat-form-field class="round-field">
+        <input type="number" matInput placeholder="Total Question" min="0"
+          [(ngModel)]="roundDetail.total_question_for_user" (keyDown.enter)="addRound(roundDetail)">
+      </mat-form-field>
+    </div>
+    <div class="text-center">
+      <mat-form-field class="round-field">
+        <input type="number" matInput placeholder="Time Break" min="0" [(ngModel)]="roundDetail.time_break"
+          (keyDown.enter)="addRound(roundDetail)">
+      </mat-form-field>
+    </div>
+    <div class="text-center mt-2 mb-2">
+      <button mat-raised-button class="submit-raised-button color-bg-green" (click)="addRound(roundDetail)">
+        Add
+      </button>
+    </div>
+  </div>
+</div>

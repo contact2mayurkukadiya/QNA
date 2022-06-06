@@ -1,0 +1,23 @@
+{
+  "name": "apidoc",
+  "version": "5.3.26",
+  "description": "apiDoc example project",
+  "title": "Custom apiDoc browser title",
+  "url" : "http://localhost/question_answer/api/public/api/",
+  "header": {
+    "title": "My own header title",
+    "filename": "header.md"
+  },
+  "footer": {
+    "title": "My own footer title",
+    "filename": "footer.md"
+  },
+  "order": [
+    "GetUser",
+    "PostUser"
+  ],
+  "template": {
+    "withCompare": true,
+    "withGenerator": true
+  }
+}

@@ -1,0 +1,75 @@
+<div class="add-question-container">
+    <div class="add-question-heading">
+        <h1 class="add-question-heading-text" *ngIf="!isUpdatingMode">Add Question</h1>
+        <h1 class="add-question-heading-text" *ngIf="isUpdatingMode">Update Question</h1>
+        <p class="sub-title">To {{ roundDetail.round_name }}</p>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="add-question-close-icon" (click)="close()">
+      <path fill="#465765"
+        d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z">
+      </path>
+    </svg>
+    </div>
+    <div class="add-question-content">
+        <p class="form-field-error">{{error}}</p>
+        <div class="text-left">
+            <mat-form-field class="add-question-input w-100">
+                <textarea matInput placeholder="Add Question Here" [(ngModel)]="questionDetail.question"></textarea>
+            </mat-form-field>
+        </div>
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="questionDetail.real_answer">
+            <div class="option-wrapper">
+                <div class="text-left option-class">
+                    <mat-form-field class="add-question-input">
+                        <input matInput placeholder="Option A" [(ngModel)]="questionDetail.answer_a">
+                    </mat-form-field>
+                    <div class="radio-wrapper">
+                        <mat-radio-button value="answer_a" class="customize-radio-button"></mat-radio-button>
+                    </div>
+                </div>
+                <div class="text-left option-class">
+                    <mat-form-field class="add-question-input">
+                        <input matInput placeholder="Option B" [(ngModel)]="questionDetail.answer_b">
+                    </mat-form-field>
+                    <div class="radio-wrapper">
+                        <mat-radio-button value="answer_b" class="customize-radio-button"></mat-radio-button>
+                    </div>
+                </div>
+                <div class="text-left option-class">
+                    <mat-form-field class="add-question-input">
+                        <input matInput placeholder="Option C" [(ngModel)]="questionDetail.answer_c">
+                    </mat-form-field>
+                    <div class="radio-wrapper">
+                        <mat-radio-button value="answer_c" class="customize-radio-button"></mat-radio-button>
+                    </div>
+                </div>
+                <div class="text-left option-class">
+                    <mat-form-field class="add-question-input">
+                        <input matInput placeholder="Option D" [(ngModel)]="questionDetail.answer_d">
+                    </mat-form-field>
+                    <div class="radio-wrapper">
+                        <mat-radio-button value="answer_d" class="customize-radio-button"></mat-radio-button>
+                    </div>
+                </div>
+            </div>
+        </mat-radio-group>
+        <p>Upload Image : </p>
+        <div class="file-uploader custom-file-uploader" onClick="document.getElementById('inputFile').click();">
+            <input type="file" id="inputFile" class="d-none" accept="image/*" (change)="displayImage($event, 'viewer')">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="file-upload-icon">
+        <path fill="#3AAFA9"
+          d="M512 144v288c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48h88l12.3-32.9c7-18.7 24.9-31.1 44.9-31.1h125.5c20 0 37.9 12.4 44.9 31.1L376 96h88c26.5 0 48 21.5 48 48zM376 288c0-66.2-53.8-120-120-120s-120 53.8-120 120 53.8 120 120 120 120-53.8 120-120zm-32 0c0 48.5-39.5 88-88 88s-88-39.5-88-88 39.5-88 88-88 88 39.5 88 88z">
+        </path>
+      </svg>
+            <img src="" class="file-uploader-view" id="viewer" *ngIf="!questionDetail.image" />
+            <img src="" [src]="questionDetail.image" *ngIf="questionDetail.image" class="file-uploader-view" id="viewer" />
+        </div>
+        <div class="text-center mt-4 mb-4">
+            <button mat-raised-button class="submit-raised-button color-bg-green add-question-submit-button" (click)="addQuestion(questionDetail)" *ngIf="!isUpdatingMode">
+        Add Question
+      </button>
+            <button mat-raised-button class="submit-raised-button color-bg-green add-question-submit-button" (click)="updateQuestion(questionDetail)" *ngIf="isUpdatingMode">
+        Update Question
+      </button>
+        </div>
+    </div>
+</div>

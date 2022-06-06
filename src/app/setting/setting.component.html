@@ -1,0 +1,42 @@
+<div class="dashboard-wrapper">
+  <div class="header-wrapper color-bg-green">
+    <app-header></app-header>
+  </div>
+  <div class="body-wrapper">
+    <div class="sidebar-wrapper color-bg-dark">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="main-body-wrapper d-flex">
+      <mat-card class="change-password-wrapper m-auto">
+        <h1 class="mb-4 change-password-heading">
+          Change Password
+        </h1>
+        <p class="form-field-error">{{error}}</p>
+        <div class="text-center">
+          <mat-form-field class="password-field">
+            <input type="password" matInput placeholder="Old Password" [(ngModel)]="oldPassword"
+              (keyDown.enter)="changePassword(oldPassword, newPassword, confirmPassword)">
+          </mat-form-field>
+        </div>
+        <div class="text-center">
+          <mat-form-field class="password-field">
+            <input type="password" matInput placeholder="New Password" [(ngModel)]="newPassword"
+              (keyDown.enter)="changePassword(oldPassword, newPassword, confirmPassword)">
+          </mat-form-field>
+        </div>
+        <div class="text-center">
+          <mat-form-field class="password-field">
+            <input type="password" matInput placeholder="Confirm Password" [(ngModel)]="confirmPassword"
+              (keyDown.enter)="changePassword(oldPassword, newPassword, confirmPassword)">
+          </mat-form-field>
+        </div>
+        <div class="text-center mt-4 mb-3">
+          <button mat-raised-button class="change-password-button color-bg-green"
+            (click)="changePassword(oldPassword, newPassword, confirmPassword)">
+            Change Password
+          </button>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
